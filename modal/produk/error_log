@@ -1,0 +1,25 @@
+[18-Apr-2022 12:39:49 Asia/Jakarta] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php:50
+Stack trace:
+#0 /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php(50): PDOStatement->execute()
+#1 {main}
+  thrown in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php on line 50
+[18-Apr-2022 12:40:48 Asia/Jakarta] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php:50
+Stack trace:
+#0 /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php(50): PDOStatement->execute()
+#1 {main}
+  thrown in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php on line 50
+[18-Apr-2022 12:42:09 Asia/Jakarta] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php:50
+Stack trace:
+#0 /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php(50): PDOStatement->execute()
+#1 {main}
+  thrown in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php on line 50
+[18-Apr-2022 14:40:19 Asia/Jakarta] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php:50
+Stack trace:
+#0 /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php(50): PDOStatement->execute()
+#1 {main}
+  thrown in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php on line 50
+[18-Apr-2022 14:40:19 Asia/Jakarta] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY093]: Invalid parameter number: number of bound variables does not match number of tokens in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php:50
+Stack trace:
+#0 /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php(50): PDOStatement->execute()
+#1 {main}
+  thrown in /home/imsc3529/public_html/192.268.908.09/modal/produk/action.php on line 50
