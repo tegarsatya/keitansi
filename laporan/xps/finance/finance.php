@@ -17,18 +17,18 @@
 	$kode	= $secu->injection(@$_GET['key']);
 	$read	= $conn->prepare("SELECT tfkk.*,
 										o.nama_out,
-										c.kode_tfk,
-										c.total_tfk,
+										-- c.kode_tfk,
+										-- c.total_tfk,
 										-- a.nomor_faktur,
-										c.kode_tfk,
+										-- c.kode_tfk,
 										tfkk.nomor, 
 										tfkk.tanggal_faktur
 									FROM
 										finance tfkk
 									LEFT JOIN outlet o ON
 										tfkk.nama_outlet = o.id_out
-									LEFT JOIN transaksi_faktur c ON 
-										tfkk.nomor_faktur = c.id_tfk
+									-- LEFT JOIN transaksi_faktur c ON 
+									-- 	tfkk.nomor_faktur = c.id_tfk
 									-- LEFT JOIN adminz a ON
 									-- 	tfkk.created_by = a.id_adm
 										WHERE tfkk.id_finance=:kode");
@@ -58,9 +58,11 @@
         </div>
     	<br />
 		<hr class="garis" />
-        <div style="text-align:center; font-weight:bold; margin:10px 0px 10px 0px;">TANDA TERIMA TUKER FAKTUR</div>
-        <div style="text-align:center; font-weight:bold;">TANGGAL DOKUMEN: <?php echo date('d F Y', strtotime('tanggal_faktur')); ?></div>
-        <div style="text-align:center; font-weight:bold; margin-bottom:20px;"></div>
+        <div style="text-align:center; font-weight:bold; margin:10px 0px 10px 0px;">TANDA TERIMA FAKTUR</div>
+        <div style="text-align:center; font-weight:bold;"><?php echo($date->tgl_indo($view['tanggal_faktur'])); ?></div>
+        <div style="text-align:center; font-weight:bold; margin:10px 0px 10px 0px;"><?php echo($view['nama_out']); ?></div>
+
+		<div style="text-align:center; font-weight:bold; margin-bottom:20px;"></div>
 
 		<!-- <table width="100%" style="font-family:Arial, Helvetica, sans-serif; font-size:10px;">
         	<tr>
@@ -102,12 +104,13 @@
     	<table class="tabel">
         	<thead>
             	<tr>
-                    <th rowspan="2">NO</th>
-                    <th rowspan="2">Nomer Faktur</th>
-                    <th colspan="1">Tanggal Faktur</th>
-                    <th rowspan="2">Nominal Faktur</th>
-                    <th rowspan="2">Penerima Tukar Faktur</th>
-                    <th rowspan="2">Stempel Outlet</th>
+                    <th style="font-size:14px;" rowspan="2">NO</th>
+					<th style="font-size:14px;" rowspan="2">Nomor PO</th>
+                    <th style="font-size:14px;" rowspan="2">Nomer Faktur</th>
+                    <th style="font-size:14px;" colspan="1">Tanggal Faktur</th>
+                    <th style="font-size:14px;" rowspan="2">Nominal Faktur</th>
+                    <th style="font-size:14px;" rowspan="2">Penerima Tukar Faktur dan Stempel Outlet</th>
+                    <!-- <th rowspan="2">Stempel Outlet</th> -->
                     <!-- <th rowspan="2">HARGA</th>
                     <th rowspan="2">DISKON</th>
                     <th rowspan="2">TOTAL</th> -->
@@ -120,20 +123,21 @@
 				$nomor	= 1;
 				$master	= $conn->prepare("SELECT tfkk.*,
 							o.nama_out,
-							c.kode_tfk,
-							c.total_tfk,
-							c.tgl_tfk,
+							d.kode_tfk,
+							d.total_tfk,
+							d.po_tfk,
+							d.tgl_tfk,
 							-- a.nomor_faktur,
-							c.kode_tfk,
+							d.kode_tfk,
 							tfkk.nomor
 						FROM
 							finance tfkk
 						LEFT JOIN outlet o ON
 							tfkk.nama_outlet = o.id_out
-						LEFT JOIN transaksi_faktur c ON 
-							tfkk.nomor_faktur = c.id_tfk
+						LEFT JOIN finance_detail c ON 
+							tfkk.nomor = c.id_finance
 						LEFT JOIN transaksi_faktur d ON 
-							tfkk.nomor_faktur_lagi = d.id_tfk
+							d.id_tfk = c.no_kwitansi
 						-- LEFT JOIN adminz a ON
 						-- 	tfkk.created_by = a.id_adm
 							WHERE tfkk.id_finance=:kode");
@@ -146,32 +150,39 @@
 					// $stotal	+= $total;
 			?>
             	<tr>
-                	<td>
+                	<td style="font-size:14px;">
 						<center><?php echo($nomor); ?></center>
 					</td>
-                	<td>
+					<td style="font-size:14px;">
+						<center><?php echo($hasil['po_tfk']); ?></center>
+					</td>
+                	<td style="font-size:14px;">
 						<center><?php echo($hasil['kode_tfk']); ?></center>
 					</td>
-                	<td>
+                	<td style="font-size:14px;">
 						<center><?php echo($hasil['tgl_tfk']); ?></center>
 					</td>
-					<td>
-						<center><?php echo($hasil['total_tfk']); ?></center>
-					</td>                
+					<td style="font-size:14px;">
+						<div align="center">Rp. <?php echo($data->angka($hasil['total_tfk'])); ?></div>
+					</td>
 					<td>
 
 					</td>
-                	<td>
-						
-					</td>
+					
+					<!-- <td>
+
+					</td> -->
+					<!-- <td>
+
+					</td> -->
                 	<!-- <td><div align="right"><?php echo($data->angka($hasil['jumlah_tfd'])); ?></div></td>
                 	<td><div align="right"><?php echo($data->angka($hasil['harga_tfd'])); ?></div></td>
                 	<td><center><?php echo($hasil['diskon_tfd']); ?>%</center></td>
                 	<td><div align="right"><?php echo($data->angka($total)); ?></div></td> -->
                 </tr>
-			<?php
+				<?php
+				$nomor++;
             	}
-				
 			?>
             </tbody>
         </table>

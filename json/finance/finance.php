@@ -47,17 +47,14 @@
 		$qMaster = "SELECT
 						tfkk.*,
 						o.nama_out,
-                        c.kode_tfk,
-                        c.total_tfk,
-						-- a.nomor_faktur,
-						c.kode_tfk,
-                        tfkk.nomor
+                        tfkk.nomor,
+						tfkk.tanggal_faktur
 					FROM
 						finance tfkk
 					LEFT JOIN outlet o ON
 						tfkk.nama_outlet = o.id_out
-					LEFT JOIN transaksi_faktur c ON 
-				  		tfkk.nomor_faktur = c.id_tfk
+					-- LEFT JOIN transaksi_faktur c ON 
+				  	-- 	tfkk.nomor_faktur = c.id_tfk
 					-- LEFT JOIN adminz a ON
 					-- 	tfkk.created_by = a.id_adm
 		$whereClause
@@ -70,9 +67,10 @@
 			$no++; 
             $uniq	= base64_encode($hasil['id_finance']);
 
-            $view	= ($data->akses($admin, $menu, 'A.read_status')==='Active') ? '<a target="_blank" href="'.$sistem.'/laporan/xps/finance/finance.php?key='.$hasil['id_finance'].'" title="Cetak SJ"><span class="badge badge-warning"><i class="fa fa-truck"></i></span></a> <a target="_blank" href="'.$sistem.'/laporan/xps/finance/finance.php?key='.$hasil['id_finance'].'" title="Cetak Faktur"><span class="badge badge-success"><i class="fa fa-print"></i></span></a>' : '';
+            $view	= ($data->akses($admin, $menu, 'A.read_status')==='Active') ? '<a target="_blank" href="'.$sistem.'/laporan/xps/finance/kwitansi.php?key='.$hasil['id_finance'].'" title="Cetak SJ"><span class="badge badge-warning"><i class="fa fa-truck"></i></span></a> <a target="_blank" href="'.$sistem.'/laporan/xps/finance/finance.php?key='.$hasil['id_finance'].'" title="Cetak Tanda Terima"><span class="badge badge-success"><i class="fa fa-print"></i></span></a>' : '';
+			$delete	= ($data->akses($admin, $menu, 'A.delete_status')==='Active') ? ' <a href="#modal1" onclick="crud(\'finance\', \'delete\', \''.$hasil['id_finance'].'\')" data-toggle="modal"><span class="badge badge-danger"><i class="fa fa-trash"></i></span></a>' : '';
 
-			$tabel	.= '<tr><td><center>'.$no.'</center></td><td>'.$hasil['nomor'].'</td><td>'.$hasil['nama_out'].'</td><td>'.$hasil['kode_tfk'].'</td><td>'.$hasil['tanggal_faktur'].'</td><td>'.$hasil['total_tfk'].'</td><td>'.$view.'</td></tr>';
+			$tabel	.= '<tr><td><center>'.$no.'</center></td><td>'.$hasil['nomor'].'</td><td>'.$hasil['nama_out'].'</td><td>'.$hasil['tanggal_faktur'].'</td><td><center>'.$view.'</center></td><td>'.$delete.'</td></tr>';
 		}
 		$navi	= $paging->myPaging($menu, $jumlah['total'], $maxi, $page);
 	}

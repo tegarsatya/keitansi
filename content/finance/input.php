@@ -7,7 +7,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Pengiriman Kurir</li>
             </ol>
         </nav> -->
-        <h4 class="content-title">Input Data - Tanda Terima Tuker Faktur</h4>
+        <h4 class="content-title">Input Data - Kwitansi</h4>
     </div>
 </div>
 <?php
@@ -16,6 +16,8 @@
         // $apls   = $data->get_apl();
 
 ?>
+<input type="hidden" name="jumlegal" id="jumlegal" value="0" readonly="readonly" />
+<input type="hidden" name="jumitem" id="jumitem" value="0" readonly="readonly" />
 <div class="content-body">
     <div class="component-section no-code">
             <h5 id="section1" class="tx-semibold"><?php echo($data->sistem('pt_sis')); ?></h5>
@@ -30,7 +32,7 @@
         <div class="form-row">
 
         <div class="form-group col-sm-12">
-                <label>Tgl. Tanda Terima <span class="tx-danger">*</span></label>
+                <label>Tgl. kWITANSI  <span class="tx-danger">*</span></label>
                 <input type="text" name="tanggal_faktur" class="form-control datepicker" placeholder="9999-99-99" required="required" />
             </div>
             <div class="form-group col-sm-12">
@@ -51,7 +53,10 @@
                 </select>
             </div>
 
-            <div class="form-group col-sm-6">
+            <!-- <div class="row"> -->
+  
+		<!-- </div> -->
+            <!-- <div class="form-group col-sm-6">
                 <label>Nomor Faktur <span class="tx-danger">*</span></label>
                 <select name="nomor_faktur" id="nomor_faktur" class="form-control select2" onchange="" required="required">
                 <option value="">-- Pilih --</option>
@@ -77,7 +82,7 @@
                 <option value="<?php echo($hasil['id_tfk']); ?>"><?php echo($hasil['kode_tfk']); ?></option>              
                  <?php } ?>
                 </select>
-            </div>
+            </div> -->
             <!-- <div class="form-group col-sm-6"></div> -->
             
             <!-- <div class="form-group col-sm-6">
@@ -91,12 +96,40 @@
             </div> -->
             
         </div>
+        
+         <div class="row">
+            <div class="form-group col-sm-12">
+                <label>Nomor Faktur <span class="tx-danger">*</span></label>
+				<table class="table table-hover mg-b-0">
+					<thead>
+						<tr>
+							<th>Nomor Faktur</th>
+							<th>Ket.</th>
+							<!-- <th>Expired Date</th> -->
+							<th><center>Hapus</center></th>
+						</tr>
+					</thead>
+					<tbody id="tbllegal"></tbody>
+				</table>
+                <a onclick="additem('tbllegal', 'jumlegal', 'legaloutlet')"><span class="badge badge-success"><i class="fa fa-plus-circle"></i> Add Data</span></a>
+            </div>
+		</div>
+        <div class="clearfix mg-t-25 mg-b-25"></div>
         <div class="row">
-            <div class="textarea col-sm-12">
-                <button type="submit" id="bsave" class="btn btn-dark">Simpan</button>
+            <div class="col-sm-12">
+                <a href="<?php echo("$sistem/finance"); ?>" title="Batal"><button type="button" class="btn btn-secondary btn-xs">Batal</button></a>
+                <button type="submit" id="bsave" class="btn btn-dark btn-xs">Simpan</button>
                 <div id="imgloading"></div>
             </div>
 		</div>
+        <!-- <div class="row">
+            <div class="textarea col-sm-12">
+                 <a href="<?php echo("$sistem/finance"); ?>" title="Batal"><button type="button" class="btn btn-secondary btn-xs">Batal</button></a>
+
+                <button type="submit" id="bsave" class="btn btn-dark">Simpan</button>
+                <div id="imgloading"></div>
+            </div>
+		</div> -->
 		</form>
     </div>
 </div>

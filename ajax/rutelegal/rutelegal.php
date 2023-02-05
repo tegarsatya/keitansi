@@ -35,9 +35,6 @@
 	</center>
 	</td>
 </tr>
-<!-- <script type="text/javascript">
-	$(".fortgl").mask("9999-99-99");
-</script> -->
 <?php
 	$conn	= $base->close();
 	}

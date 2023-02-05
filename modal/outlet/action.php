@@ -95,7 +95,7 @@
 			$save->bindParam(":admin", $admin, PDO::PARAM_STR);
 			$save->execute();
 			// Save Legal
-			$no		= 0;
+			$no		= 1;
 			$jumlah	= count(@$_POST['legal']);
 			while($no<$jumlah){
 				$legal	= $secu->injection(@$_POST['legal'][$no]);

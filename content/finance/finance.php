@@ -7,7 +7,7 @@
                 <li class="breadcrumb-item active" aria-current="page">Pengiriman Kurir</li>
             </ol>
         </nav>
-        <h4 class="content-title">Tanda Terima Tuker Faktur</h4>
+        <h4 class="content-title">Kwitansi</h4>
     </div>
 </div>
 <?php
@@ -33,11 +33,10 @@
             <thead>
                 <tr>
                     <th><center>#</center></th>
-                    <th>Nomer Tanda Terima</th>
+                    <th>Nomer Kwitansi</th>
                     <th>Nama Outlet</th>
-                    <th>Nomor faktur</th>
                     <th>Tanggal Tanda Terima</th>
-                    <th>Total Faktur</th>
+                    <th><center>Print Kwitansi & Tanda Terima</center></th>
                     <th>Action</th>
                     <!-- <th>Tanggal Pengiriman</th>
                     <th>Keterangan</th>

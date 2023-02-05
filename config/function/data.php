@@ -30,7 +30,7 @@
 
 
 
-			function sistem($cari) {
+		function sistem($cari) {
 			$conn	= $this->open();
 			$kode	= 1;
 			$read	= $conn->prepare("SELECT $cari AS cari FROM sistem WHERE id_sis=:kode");
@@ -38,12 +38,6 @@
 			$read->execute();
 			$conn	= $this->close();
 			$view	= $read->fetch(PDO::FETCH_ASSOC);
-			if ($cari == 'url_sis') {
-				$view['cari'] = 'http://localhost/kurir'; 	
-			}
-			if ($cari == 'app_sis') {
-				$view['cari'] = 'DUA FARMA TRANCKING SYSTEM'; 
-			}
 			return $view['cari'];
 		}
 

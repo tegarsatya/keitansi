@@ -2514,16 +2514,11 @@ $("#formsalespnpl").submit(function(e){
 			$("#btnsave").prop("disabled", false);
 			$("#formmenu").get(0).reset();
 			$("#imgloading").html('');
+
 		}
 	});
 });
 
-// FAKTUR LAIN-LAIN
 
 
-
-
-
-// END FAKTUR LAIN-LAIN
-
-// end
+// endddddddddddddddddddddd -- enddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
