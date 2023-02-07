@@ -14,24 +14,24 @@
 	$conn	= $base->open();
 	$nomor	= $secu->injection(@$_POST['n']);
 ?>
-<tr id="<?php echo("outlet$nomor"); ?>">
+<tr id="<?php echo("barang$nomor"); ?>">
     <td>
-	<select name="outlet[]"  id="outlet[]" class="form-control select2" required="required">
+	<select name="barang[]"  id="barang[]" class="form-control select2" required="required">
     	<option value="">-- Select Data Faktur --</option>
 		<?php
-                $master	= $conn->prepare("SELECT id_out, nama_out FROM outlet ORDER BY nama_out ASC");                 
-                $master->execute();
+                $master	= $conn->prepare("SELECT A.id_tfk, A.kode_tfk, B.nama_out, DATE_FORMAT(A.created_at, '%Y-%m-%d') FROM transaksi_faktur AS A LEFT JOIN outlet AS B ON A.id_out=B.id_out WHERE DATE(tgl_tfk) = CURDATE()  ORDER BY A.tgl_tfk ASC");                 
+                 $master->execute();
                   while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
                 ?>
-                 <option value="<?php echo($hasil['id_out']); ?>"><?php echo($hasil['nama_out'] ); ?></option>
-         <?php } ?>
+                 <option value="<?php echo($hasil['id_tfk']); ?>"><?php echo("$hasil[kode_tfk] ($hasil[nama_out])"); ?></option>
+       <?php } ?>
     </select>
     </td>
     <!-- <td><input type="text" name="ket[]" class="form-control" placeholder="Type here..." /></td> -->
     <!-- <td><input type="text" name="tgllegal[]" class="form-control fortgl" placeholder="9999-99-99" /></td> -->
     <td>
     <center>
-    	<a onclick="<?php echo("removeitem('jumlout', 'outlet', $nomor)"); ?>"><span class="badge badge-danger"><i class="fa fa-times-circle"></i></span></a>
+    	<a onclick="<?php echo("removeitem('jumlpe', 'barang', $nomor)"); ?>"><span class="badge badge-danger"><i class="fa fa-times-circle"></i></span></a>
 	</center>
 	</td>
 </tr>
@@ -44,7 +44,7 @@
 ?>
 <script type="text/javascript">
 $('.select2').select2({
-	placeholder: '-- Pilih Nama Outlet --',
+	placeholder: '-- Pilih Nomer Faktur --',
 	searchInputPlaceholder: 'Search options'
 });
 </script>

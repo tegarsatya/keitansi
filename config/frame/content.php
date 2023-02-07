@@ -341,18 +341,18 @@
 			require_once("content/rfpengiriman/rfpengiriman.php");
 		break;
 
-		case "rutek":
-			require_once("content/rutek/rutek.php");
+		case "rute":
+			require_once("content/rute/rute.php");
 		break;
 
-		case "irutek":
-			require_once("content/rutek/input.php");
+		case "irute":
+			require_once("content/rute/input.php");
 		break;
-		case "erutek":
-			require_once("content/rutek/edit.php");
+		case "erute":
+			require_once("content/rute/edit.php");
 		break;
-		case "vrutek":
-			require_once("content/rutek/view.php");
+		case "vrute":
+			require_once("content/rute/view.php");
 		break;
 
 		case "finance" :

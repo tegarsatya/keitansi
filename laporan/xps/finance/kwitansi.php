@@ -82,7 +82,7 @@
                 
             	<td>Nomor</td>
             	<td><center></center></td>
-            	<td width="32%">: <?php echo($view['nomor']); ?></td>
+            	<td width="50%">: <?php echo($view['nomor']); ?></td>
             </tr>
           
             <tr>
@@ -199,7 +199,7 @@
 			
 		
 			
-            	<td><center> <?php echo($data->angka($hasil['total_tfk'])); ?></center></td>
+            	<td  align="right"><center  style="float:left;"> <?php echo($data->angka($hasil['total_tfk'])); ?></center></td>
             </tr>
           
 				<?php
