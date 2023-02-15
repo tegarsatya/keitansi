@@ -100,7 +100,7 @@
 					<thead>
 						<tr>
 							<th>Nama Outlet</th>
-							<!-- <th>Ket.</th> -->
+							<th>Ket.</th>
 							<!-- <th>Expired Date</th> -->
 							<th><center>Hapus</center></th>
 						</tr>
@@ -112,7 +112,7 @@
         </div>
          <div class="row">
             <div class="form-group col-sm-12">
-                <label>Nomor Faktur <span class="tx-danger">*</span></label>
+                <label>Pilih Faktur Pengiriman Barang <span class="tx-danger">*</span></label>
 				<table class="table table-hover mg-b-0">
 					<thead>
 						<tr>
@@ -128,7 +128,7 @@
 		</div>
         <div class="row">
             <div class="form-group col-sm-12">
-                <label>Nomor Faktur <span class="tx-danger">*</span></label>
+                <label>Tuker Faktur <span class="tx-danger">*</span></label>
 				<table class="table table-hover mg-b-0">
 					<thead>
 						<tr>

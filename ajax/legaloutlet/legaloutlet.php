@@ -27,7 +27,7 @@
          <?php } ?>
     </select>
     </td>
-    <!-- <td><input type="text" name="ket[]" class="form-control" placeholder="Type here..." /></td> -->
+    <td><input type="text" name="ket[]" class="form-control" placeholder="Type here..." /></td>
     <!-- <td><input type="text" name="tgllegal[]" class="form-control fortgl" placeholder="9999-99-99" /></td> -->
     <td>
     <center>

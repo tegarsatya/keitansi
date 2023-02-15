@@ -214,7 +214,7 @@
     RewriteRule ^finance$ sistem.php?menu=finance [L]
     RewriteRule ^finance/cari=(.*)$ sistem.php?menu=finance&cari=$1 [L]
     RewriteRule ^finance/i$ sistem.php?menu=ifinance [L]
-
+    RewriteRule ^finance/e/(.*)$ sistem.php?menu=efinance&keycode=$1 [L]
     
 	ErrorDocument 404 http://localhost/kurir
 	RewriteCond %{QUERY_STRING} .

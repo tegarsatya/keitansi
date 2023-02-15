@@ -35,7 +35,7 @@
                     <th><center>#</center></th>
                     <th>Nama Kurir</th>
                     <!-- <th>Nama Outlet</th> -->
-                    <th>Tanggal Tanda Terima</th>
+                    <th>Tanggal Pengiriman Barang Dan Tuker Faktur</th>
                     <!-- <th><center>Print Kwitansi & Tanda Terima</center></th> -->
                     <th>Action</th>
                     <!-- <th>Tanggal Pengiriman</th>

@@ -41,6 +41,7 @@
                     <th><div align="right">Total</div></th>
                     <th><center>Detail</center></th>
                     <th><center>Action</center></th>
+                    <th><center>Suhu</center></th>
                 </tr>
             </thead>
             <tbody id="isitabel"></tbody>

@@ -368,32 +368,156 @@
             	
         </div>
 		<div>
-			<table class="tabel" style="margin-left:225px; margin-right:auto;">
+			<table class="tabel" style="margin-left:225px; margin-right:280px;">
 				<thead>
 					<tr>
 
 						<th >No. Faktur</th>
 						<th >Total Nominal</th>
+						
 					</tr>
 					
 				</thead>
-				<tbody>
+            <tbody>
+           
+            	<tr>
+                	<!-- <td><?php echo($hasil['kode_pro']); ?></td>
+                	<td><?php echo($hasil['nama_pro']); ?></td>
+                	<td><?php echo($hasil['nama_kpr']); ?></td>
+                	<td><?php echo("$hasil[berat_pro] $hasil[nama_spr]"); ?></td>
+                	<td><center><?php echo($hasil['no_bcode']); ?></center></td>
+                	<td><center><?php echo(substr($hasil['tgl_expired'], 0, 7)); ?></center></td>
+                	<td><div align="right"><?php echo($data->angka($hasil['jumlah_tfd'])); ?></div></td>
+                	<td><div align="right"><?php echo($data->angka($hasil['harga_tfd'])); ?></div></td>
+                	<td><center><?php echo($hasil['diskon_tfd']); ?>%</center></td>
+                	<td><div align="right"><?php echo($data->angka($total)); ?></div></td> -->
+                </tr>
 			
-					<tr>
-						<!-- <td><?php echo($hasil['kode_pro']); ?></td>
-						<td><?php echo($hasil['nama_pro']); ?></td>
-						<td><?php echo($hasil['nama_kpr']); ?></td>
-						<td><?php echo("$hasil[berat_pro] $hasil[nama_spr]"); ?></td>
-						<td><center><?php echo($hasil['no_bcode']); ?></center></td>
-						<td><center><?php echo(substr($hasil['tgl_expired'], 0, 7)); ?></center></td>
-						<td><div align="right"><?php echo($data->angka($hasil['jumlah_tfd'])); ?></div></td>
-						<td><div align="right"><?php echo($data->angka($hasil['harga_tfd'])); ?></div></td>
-						<td><center><?php echo($hasil['diskon_tfd']); ?>%</center></td>
-						<td><div align="right"><?php echo($data->angka($total)); ?></div></td> -->
-					</tr>
-				
-				</tbody>
-				
+            </tbody>
+				<!-- <tr>
+					<td><center>Jakarta, <?php echo($date->tgl_indo($view['tanggal_faktur'])); ?><center</td>
+					<td><center></center></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr><tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr><tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr><tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr><tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr><tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr><tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td> </td>
+					<td><center></center></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td><u><b>Saputra Pratama </td>
+				</tr>
+				<tr>
+					<td><b>Finance </td>
+				</tr> -->
 			</table>
 		<!-- <div style="min-height:30px; height:50; border:solid 1px #666666; text-align:center; font-weight:bold; margin-top:10px; padding:5px; font-size:12px;">Terbilang : # <?php echo($data->terbilang($subtot)); ?> Rupiah #</div> -->
 		</div>

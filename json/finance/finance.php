@@ -66,11 +66,11 @@
 		while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
 			$no++; 
             $uniq	= base64_encode($hasil['id_finance']);
-
+			$edit	= ($data->akses($admin, $menu, 'A.update_status')==='Active') ? '<a href="'.$data->sistem('url_sis').'/finance/e/'.$hasil['id_finance'].'"><span class="badge badge-info"><i class="fa fa-edit"></i></span></a>' : '';
             $view	= ($data->akses($admin, $menu, 'A.read_status')==='Active') ? '<a target="_blank" href="'.$sistem.'/laporan/xps/finance/kwitansi.php?key='.$hasil['id_finance'].'" title="Cetak SJ"><span class="badge badge-warning"><i class="fa fa-truck"></i></span></a> <a target="_blank" href="'.$sistem.'/laporan/xps/finance/finance.php?key='.$hasil['id_finance'].'" title="Cetak Tanda Terima"><span class="badge badge-success"><i class="fa fa-print"></i></span></a>' : '';
 			$delete	= ($data->akses($admin, $menu, 'A.delete_status')==='Active') ? ' <a href="#modal1" onclick="crud(\'finance\', \'delete\', \''.$hasil['id_finance'].'\')" data-toggle="modal"><span class="badge badge-danger"><i class="fa fa-trash"></i></span></a>' : '';
 
-			$tabel	.= '<tr><td><center>'.$no.'</center></td><td>'.$hasil['nomor'].'</td><td>'.$hasil['nama_out'].'</td><td>'.$hasil['tanggal_faktur'].'</td><td><center>'.$view.'</center></td><td>'.$delete.'</td></tr>';
+			$tabel	.= '<tr><td><center>'.$no.'</center></td><td>'.$hasil['nomor'].'</td><td>'.$hasil['nama_out'].'</td><td>'.$hasil['tanggal_faktur'].'</td><td><center>'.$view.'</center></td><td>'.$delete.$edit.'</td></tr>';
 		}
 		$navi	= $paging->myPaging($menu, $jumlah['total'], $maxi, $page);
 	}

@@ -46,13 +46,13 @@
 				while($no<$jumlah)
 				{
 					$outlet	= $secu->injection(@$_POST['outlet'][$no]);
-					// $ket	= $secu->injection(@$_POST['ket'][$no]);
+					$ket	= $secu->injection(@$_POST['ket'][$no]);
 					// Save
-					$save	= $conn->prepare("INSERT INTO rute_outlet VALUES(:id, :kode, :outlet, :catat, :admin, :catat, :admin)");
+					$save	= $conn->prepare("INSERT INTO rute_outlet VALUES(:id, :kode, :outlet,:ket, :catat, :admin, :catat, :admin)");
 					$save->bindParam(":id", $id, PDO::PARAM_STR);
 					$save->bindParam(":kode", $kode, PDO::PARAM_STR);
 					$save->bindParam(":outlet", $outlet, PDO::PARAM_STR);
-					// $save->bindParam(":ket", $ket, PDO::PARAM_STR);
+					$save->bindParam(":ket", $ket, PDO::PARAM_STR);
 					$save->bindParam(":catat", $catat, PDO::PARAM_STR);
 					$save->bindParam(":admin", $admin, PDO::PARAM_STR);
 				
@@ -111,24 +111,114 @@
 			    echo($hasil);
 			break;
 
-			// case "delete":
-			// 	$kode	= $secu->injection($_POST['keycode']);
-			// 	$dele	= $conn->prepare("DELETE A, B FROM finance AS A LEFT JOIN finance_detail AS B ON A.id_finance=B.id_finance WHERE A.id_finance=:kode");
-			// 	$dele->bindParam(":kode", $kode, PDO::PARAM_STR);
-			// 	$dele->execute();
-			// 	/*
-			// 	$dele	= $conn->prepare("DELETE FROM outlet_alamat WHERE id_out=:kode");
-			// 	$dele->bindParam(":kode", $kode, PDO::PARAM_STR);
-			// 	$dele->execute();
-			// 	$dele	= $conn->prepare("DELETE FROM outlet_diskon WHERE id_out=:kode");
-			// 	$dele->bindParam(":kode", $kode, PDO::PARAM_STR);
-			// 	$dele->execute();
-			// 	*/
-			// 	//RIWAYAT
-			// 	$riwayat= $conn->query("INSERT INTO riwayat VALUES('', '$kode', 'Finance', 'Delete', '', '$catat', '$admin')");
-			// 	$hasil	= ($dele==true) ? "success" : "error";
+
+			// update
+			case "update":
+				// Basic
+				$kode	= $secu->injection($_POST['id_rute']);
+				$nama	= $secu->injection($_POST['nama_pengirim']);
+				$tgl	= $secu->injection($_POST['tanggal']);
+				$outlet	= $secu->injection($_POST['outlet']);
+				$barang	= $secu->injection($_POST['barang']);
+				$faktur	= $secu->injection($_POST['faktur']);
+				
+				// update rute
+				$edit	= $conn->prepare("UPDATE rute SET nama=:nama_pengirim, tgl=:tanggal, outlet=:outlet, barang=:barang, faktur=:faktur, updated_at=:catat, updated_by=:admin WHERE id_rute=:kode");
+				$edit->bindParam(":kode", $kode, PDO::PARAM_STR);
+				$edit->bindParam(":nama", $nama, PDO::PARAM_STR);
+				$edit->bindParam(":tgl", $tgl, PDO::PARAM_STR);
+				$edit->bindParam(":outlet", $outlet, PDO::PARAM_STR);
+				$edit->bindParam(":barang", $barang, PDO::PARAM_STR);
+				$edit->bindParam(":faktur", $faktur, PDO::PARAM_STR);
+				// $edit->bindParam(":kete", $kete, PDO::PARAM_STR);
+				$edit->bindParam(":catat", $catat, PDO::PARAM_STR);
+				$edit->bindParam(":admin", $admin, PDO::PARAM_STR);
+				$edit->execute();
+				
+				// Hapus rute outlet
+				$remove	= $conn->prepare("DELETE FROM rute_outlet WHERE id_rute=:kode");
+				$remove->bindParam(":kode", $kode, PDO::PARAM_STR);
+				$remove->execute();
+				// Hapus rute pengiriman barang
+				$remove	= $conn->prepare("DELETE FROM rute_pengiriman_barang WHERE id_rute=:kode");
+				$remove->bindParam(":kode", $kode, PDO::PARAM_STR);
+				$remove->execute();
+				// Hapus rute tuker faktur
+				$remove	= $conn->prepare("DELETE FROM rute_tuker_faktur WHERE id_rute=:kode");
+				$remove->bindParam(":kode", $kode, PDO::PARAM_STR);
+				$remove->execute();
+
+				// Update rute outlet
+				$no		= '0';
+				$jumlah	= count(@$_POST['outlet']);
+				while($no<$jumlah)
+				{
+					$outlet	= $secu->injection(@$_POST['outlet'][$no]);
+					$ket	= $secu->injection(@$_POST['ket'][$no]);
+					// Save
+					$save	= $conn->prepare("INSERT INTO rute_outlet VALUES(:id, :kode, :outlet,:ket, :catat, :admin, :catat, :admin)");
+					$save->bindParam(":id", $id, PDO::PARAM_STR);
+					$save->bindParam(":kode", $kode, PDO::PARAM_STR);
+					$save->bindParam(":outlet", $outlet, PDO::PARAM_STR);
+					$save->bindParam(":ket", $ket, PDO::PARAM_STR);
+					$save->bindParam(":catat", $catat, PDO::PARAM_STR);
+					$save->bindParam(":admin", $admin, PDO::PARAM_STR);
+				
+					$save->execute();
+					
+				$no++;
+
+				}
+
+				// update rute pengiriman barang	
+				$no		= '0';
+				$jumlah	= count(@$_POST['barang']);
+				while($no<$jumlah)
+				{
+					$barang	= $secu->injection(@$_POST['barang'][$no]);
+					// $ket	= $secu->injection(@$_POST['ket'][$no]);
+					// Save
+					$save	= $conn->prepare("INSERT INTO rute_pengiriman_barang VALUES(:id, :kode, :barang, :catat, :admin, :catat, :admin)");
+					$save->bindParam(":id", $id, PDO::PARAM_STR);
+					$save->bindParam(":kode", $kode, PDO::PARAM_STR);
+					$save->bindParam(":barang", $barang, PDO::PARAM_STR);
+					// $save->bindParam(":ket", $ket, PDO::PARAM_STR);
+					$save->bindParam(":catat", $catat, PDO::PARAM_STR);
+					$save->bindParam(":admin", $admin, PDO::PARAM_STR);
+				
+					$save->execute();
+					
+				$no++;
+				}
+
+				// update tuker  faktur
+				$no		= '0';
+				$jumlah	= count(@$_POST['faktur']);
+				while($no<$jumlah)
+				{
+					$faktur	= $secu->injection(@$_POST['faktur'][$no]);
+					// $ket	= $secu->injection(@$_POST['ket'][$no]);
+					// Save
+					$save	= $conn->prepare("INSERT INTO rute_tuker_faktur VALUES(:id, :kode, :faktur, :catat, :admin, :catat, :admin)");
+					$save->bindParam(":id", $id, PDO::PARAM_STR);
+					$save->bindParam(":kode", $kode, PDO::PARAM_STR);
+					$save->bindParam(":faktur", $faktur, PDO::PARAM_STR);
+					// $save->bindParam(":ket", $ket, PDO::PARAM_STR);
+					$save->bindParam(":catat", $catat, PDO::PARAM_STR);
+					$save->bindParam(":admin", $admin, PDO::PARAM_STR);
+				
+					$save->execute();
+					
+				$no++;
+				}
+			
+				//RIWAYAT
+				$riwayat= $conn->query("INSERT INTO riwayat VALUES('', '$code', 'Rute Pengiriman Barang', 'Update', '', '$catat', '$admin')");
+				$hasil	= ($edit==true) ? "success" : "error";
 				echo($hasil);
 			break;
+
+			
 		
 		}
 	}
