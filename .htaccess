@@ -211,12 +211,13 @@
     RewriteRule ^rute$ sistem.php?menu=rute [L]
     RewriteRule ^rute/cari=(.*)$ sistem.php?menu=rute&cari=$1 [L]
     RewriteRule ^rute/i$ sistem.php?menu=irute [L]
+    RewriteRule ^rute/e/(.*)$ sistem.php?menu=erute&keycode=$1 [L]
     RewriteRule ^finance$ sistem.php?menu=finance [L]
     RewriteRule ^finance/cari=(.*)$ sistem.php?menu=finance&cari=$1 [L]
     RewriteRule ^finance/i$ sistem.php?menu=ifinance [L]
     RewriteRule ^finance/e/(.*)$ sistem.php?menu=efinance&keycode=$1 [L]
     
-	ErrorDocument 404 http://localhost/kurir
+	ErrorDocument 404 http://localhost/kwitansi
 	RewriteCond %{QUERY_STRING} .
 	RewriteRule ^$ /? [R,L]
     Options All -Indexes
