@@ -27,14 +27,14 @@
 ?>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>Data Kwitansi</title>
+        <title>Data Pengiriman Barang</title>
     </head>
 
 
     <body>
 		<table>
         	<tr>
-            	<th colspan="26">Data Kwitansi</th>
+            	<th colspan="26">Rute Pengiriman Barang dan Tuker Faktur</th>
             </tr>
         
             <tr>
@@ -45,26 +45,26 @@
         	<thead>
             	<tr>
                     <th><center>NO</center></th>
-                    <th>Nomor Kwitansi</th>
-                    <th>Nomor Faktur</th>
-					<th>Nama Outlet</th>
+                    <th>Nama Pengirim</th>
+                    <th>Nomor Faktur Pengiriman Barang</th>
+					<!-- <th>Nomor Faktur Tuker Faktur</th> -->
                     <th>Tanggal</th>
 				</tr>
     		</thead>
             <tbody>
 			<?php
 				$nomor	= 1;
-				$master	= $conn->prepare("SELECT A.id_finance, A.nomor, A.nama_outlet, A.tanggal_faktur,  B.id_f_detail, B.no_kwitansi, B.id_finance, C.kode_tfk, D.nama_out FROM finance AS A LEFT JOIN finance_detail AS B ON A.id_finance=B.id_finance LEFT JOIN transaksi_faktur AS C ON B.no_kwitansi=C.id_tfk LEFT JOIN outlet AS D ON A.nama_outlet=D.id_out WHERE A.id_finance!='' ORDER BY A.nomor DESC, A.tanggal_faktur DESC");
+				$master	= $conn->prepare("SELECT A.id_rute, A.nama_pengirim, A.tanggal, B.barang, B.id_rute FROM rute AS A LEFT JOIN rute_pengiriman_barang AS B ON A.id_rute=B.id_rute WHERE A.id_rute!='' ORDER BY A.id_rute DESC, A.tanggal DESC");
 				// $master->bindParam(':tanggal', $tanggal, PDO::PARAM_STR);
 				$master->execute();
 				while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
 			?>
             	<tr>
                 	<td><center><?php echo($nomor); ?></center></td>
-                	<td><?php echo($hasil['nomor']); ?></td>
-                	<td><?php echo($hasil['kode_tfk']); ?></td>
-					<td><?php echo($hasil['nama_out']); ?></td>
-                	<td><?php echo($hasil['tanggal_faktur']); ?></td>
+                	<td><?php echo($hasil['nama_pengirim']); ?></td>
+                	<td><?php echo($hasil['barang']); ?></td>
+					<!-- <td><?php echo($hasil['tuker_faktur']); ?></td> -->
+                	<td><?php echo($hasil['tanggal']); ?></td>
                 	
                 </tr>
 			<?php

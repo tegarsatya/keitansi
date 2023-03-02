@@ -354,6 +354,9 @@
 		case "vrute":
 			require_once("content/rute/view.php");
 		break;
+		case "prute":
+			require_once("content/rute/viewp.php");
+		break;
 
 		case "finance" :
 			require_once("content/finance/finance.php");

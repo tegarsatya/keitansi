@@ -29,7 +29,7 @@
         <input type="hidden" name="nact" id="nact" value="input" readonly="readonly" />
         <div class="form-row">
 
-        <div class="form-group col-sm-12">
+            <div class="form-group col-sm-12">
                 <label>Tgl. Pengiriman  <span class="tx-danger">*</span></label>
                 <input type="text" name="tanggal" class="form-control datepicker" placeholder="9999-99-99" required="required" />
             </div>
@@ -43,7 +43,7 @@
                         $master->execute();
                         while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
                         ?>
-                    <option value="<?php echo($hasil['id_adm']); ?>"><?php echo("$hasil[nama_adm] ($hasil[email_adm])"); ?></option>
+                    <option value="<?php echo($hasil['nama_adm']); ?>"><?php echo("$hasil[nama_adm] ($hasil[email_adm])"); ?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -107,7 +107,7 @@
 					</thead>
 					<tbody id="tbllegal2"></tbody>
 				</table>
-                <a onclick="additem('tbllegal2', 'jumout', 'legaloutlet')"><span class="badge badge-success"><i class="fa fa-plus-circle"></i> Add Data</span></a>
+                <a onclick="additem('tbllegal2', 'jumlout', 'legaloutlett')"><span class="badge badge-success"><i class="fa fa-plus-circle"></i> Add Data</span></a>
             </div>
         </div>
          <div class="row">
@@ -145,7 +145,7 @@
         <div class="clearfix mg-t-25 mg-b-25"></div>
         <div class="row">
             <div class="col-sm-12">
-                <a href="<?php echo("$sistem/finance"); ?>" title="Batal"><button type="button" class="btn btn-secondary btn-xs">Batal</button></a>
+                <a href="<?php echo("$sistem/rute"); ?>" title="Batal"><button type="button" class="btn btn-secondary btn-xs">Batal</button></a>
                 <button type="submit" id="bsave" class="btn btn-dark btn-xs">Simpan</button>
                 <div id="imgloading"></div>
             </div>

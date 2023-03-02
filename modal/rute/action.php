@@ -218,6 +218,27 @@
 				echo($hasil);
 			break;
 
+
+			case "delete":
+				$kode	= $secu->injection($_POST['keycode']);
+				$dele	= $conn->prepare("DELETE A, B, C, D FROM rute AS A LEFT JOIN rute_outlet AS B ON A.id_rute=B.id_rute LEFT JOIN rute_pengiriman_barang AS C ON A.id_rute=C.id_rute LEFT JOIN rute_tuker_faktur AS D ON A.id_rute=D.id_rute WHERE A.id_rute=:kode");
+				$dele->bindParam(":kode", $kode, PDO::PARAM_STR);
+				$dele->execute();
+				/*
+				$dele	= $conn->prepare("DELETE FROM outlet_alamat WHERE id_out=:kode");
+				$dele->bindParam(":kode", $kode, PDO::PARAM_STR);
+				$dele->execute();
+				$dele	= $conn->prepare("DELETE FROM outlet_diskon WHERE id_out=:kode");
+				$dele->bindParam(":kode", $kode, PDO::PARAM_STR);
+				$dele->execute();
+				*/
+				//RIWAYAT
+				$riwayat= $conn->query("INSERT INTO riwayat VALUES('', '$kode', 'RUTE', 'Delete', '', '$catat', '$admin')");
+				$hasil	= ($dele==true) ? "success" : "error";
+				echo($hasil);
+			break;
+		
+
 			
 		
 		}

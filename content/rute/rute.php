@@ -21,8 +21,9 @@
         <div class="col-sm-6">
             <?php echo(($data->akses($admin, $menu, 'A.create_status')==='Active') ? '<a href="'.$sistem.'/rute/i"><button class="btn btn-primary btn-pill btn-xs"><i class="fa fa-plus-circle"></i> Tambah Data</button></a>' : ''); ?>
             <a href="<?php echo("$sistem/rute"); ?>" title="Refresh"><button class="btn btn-info btn-pill btn-xs"><i class="fa fa-spinner"></i> Refresh</button></a>
-        	<?php echo(($data->akses($admin, $menu, 'A.read_status')==='Active') ? '<a target="_blank" href="'.$sistem.'/laporan/xps/finance/finance.php?key='.$cari.'" title="XPS"><button class="btn btn-danger btn-pill btn-xs"><i class="fa fa-print"></i> XPS</button></a>' : ''); ?>
-        	<?php echo(($data->akses($admin, $menu, 'A.read_status')==='Active') ? '<a target="_blank" href="'.$sistem.'/laporan/xls/finance/finance.php?key='.$cari.'" title="XLS"><button class="btn btn-success btn-pill btn-xs"><i class="fa fa-print"></i> XLS</button></a>' : ''); ?>
+			<a target="_blank" href="<?php echo($data->sistem('url_sis')."/laporan/xls/rute/rute.php?key=$cari"); ?>" title=".Pengiriman_Barang"><button class="btn btn-success btn-pill btn-xs"><i class="fa fa-print"></i>. Pengiriman_Barang</button></a>
+            <a target="_blank" href="<?php echo($data->sistem('url_sis')."/laporan/xls/rute/rutetf.php?key=$cari"); ?>" title=".Pengiriman_Barang"><button class="btn btn-success btn-pill btn-xs"><i class="fa fa-print"></i>. Tuker_Faktur</button></a>
+
         </div>
         <!-- <div class="col-sm-6">
 			<span class="badge badge-pill badge-danger"><i class="fa fa-search"></i> Search : <?php echo(@$pecah[0]." | Periode I : ".@$pecah[1]." | Periode II : ".@$pecah[2]); ?></span>
@@ -33,11 +34,12 @@
             <thead>
                 <tr>
                     <th><center>#</center></th>
-                    <th>Nama Kurir</th>
+                    <th><center>Nama Kurir</center></th>
                     <!-- <th>Nama Outlet</th> -->
-                    <th>Tanggal Pengiriman Barang Dan Tuker Faktur</th>
+                    <th><center>Tanggal Pengiriman Barang Dan Tuker Faktur</center></th>
                     <!-- <th><center>Print Kwitansi & Tanda Terima</center></th> -->
-                    <th>Action</th>
+                    <th><center>Detail Pengiriman Barang Dan Tuker Faktur</center></th>
+                    <th><center>Action</center></th>
                     <!-- <th>Tanggal Pengiriman</th>
                     <th>Keterangan</th>
                     <th>Status</th> -->

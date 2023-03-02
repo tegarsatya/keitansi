@@ -24,8 +24,9 @@
                 $nomorf     = $secu->injection($_POST['nomor']);
                 $nama	    = $secu->injection($_POST['nama_outlet']);
                 $tgl        = $secu->injection($_POST['tanggal_faktur']);
+				$ket        = $secu->injection($_POST['keterangan']);
 			
-				$save	= $conn->prepare("INSERT INTO finance VALUES(:kode, :nomorf, :nama, :tgl, :id, :catat, :admin, :catat, :admin)");
+				$save	= $conn->prepare("INSERT INTO finance VALUES(:kode, :nomorf, :nama, :tgl, :id, :ket, :catat, :admin, :catat, :admin)");
 				$save->bindParam(":id", $id, PDO::PARAM_STR);
 				$save->bindParam(":kode", $kode, PDO::PARAM_STR);
                 $save->bindParam(":nomorf", $nomorf, PDO::PARAM_STR);
@@ -34,6 +35,7 @@
 				$save->bindParam(":nama", $nama, PDO::PARAM_STR);
                 $save->bindParam(":tgl", $tgl, PDO::PARAM_STR);
 				$save->bindParam(":nokwi", $nokwi, PDO::PARAM_STR);
+				$save->bindParam(":ket", $ket, PDO::PARAM_STR);
 				$save->bindParam(":catat", $catat, PDO::PARAM_STR);
 				$save->bindParam(":admin", $admin, PDO::PARAM_STR);
 				$save->execute();

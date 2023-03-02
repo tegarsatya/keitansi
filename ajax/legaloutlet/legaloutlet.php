@@ -14,16 +14,21 @@
 	$conn	= $base->open();
 	$nomor	= $secu->injection(@$_POST['n']);
 ?>
-<tr id="<?php echo("outlet$nomor"); ?>">
+<tr id="<?php echo("nokwi$nomor"); ?>">
     <td>
-	<select name="outlet[]"  id="outlet[]" class="form-control select2" required="required">
+	<select name="nokwi[]"  id="nokwi[]" class="form-control select2" required="required">
     	<option value="">-- Select Data Faktur --</option>
 		<?php
-                $master	= $conn->prepare("SELECT id_out, nama_out FROM outlet ORDER BY nama_out ASC");                 
-                $master->execute();
+                 $master = $conn->prepare("SELECT id_tfk, kode_tfk,total_tfk FROM transaksi_faktur ORDER BY kode_tfk ASC");
+                 $master->execute();
                   while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
                 ?>
-                 <option value="<?php echo($hasil['id_out']); ?>"><?php echo($hasil['nama_out'] ); ?></option>
+                 <option value="<?php echo($hasil['id_tfk']); ?>">
+                     <!--<?php echo("$hasil[kode_tfk] ($hasil[total_tfk])"); ?>-->
+                     <?php echo($hasil['kode_tfk']); ?>
+                     
+                     ( Rp. <?php echo($data->angka($hasil['total_tfk'])); ?> )
+                 </option>
          <?php } ?>
     </select>
     </td>
@@ -31,7 +36,7 @@
     <!-- <td><input type="text" name="tgllegal[]" class="form-control fortgl" placeholder="9999-99-99" /></td> -->
     <td>
     <center>
-    	<a onclick="<?php echo("removeitem('jumlout', 'outlet', $nomor)"); ?>"><span class="badge badge-danger"><i class="fa fa-times-circle"></i></span></a>
+    	<a onclick="<?php echo("removeitem('jumlegal', 'nokwi', $nomor)"); ?>"><span class="badge badge-danger"><i class="fa fa-times-circle"></i></span></a>
 	</center>
 	</td>
 </tr>
@@ -44,7 +49,7 @@
 ?>
 <script type="text/javascript">
 $('.select2').select2({
-	placeholder: '-- Pilih Nama Outlet --',
+	placeholder: '-- Pilih Nomor Faktur --',
 	searchInputPlaceholder: 'Search options'
 });
 </script>

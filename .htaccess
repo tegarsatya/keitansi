@@ -212,6 +212,8 @@
     RewriteRule ^rute/cari=(.*)$ sistem.php?menu=rute&cari=$1 [L]
     RewriteRule ^rute/i$ sistem.php?menu=irute [L]
     RewriteRule ^rute/e/(.*)$ sistem.php?menu=erute&keycode=$1 [L]
+    RewriteRule ^rute/v/(.*)$ sistem.php?menu=vrute&keycode=$1 [L]
+    RewriteRule ^rute/p/(.*)$ sistem.php?menu=prute&keycode=$1 [L]
     RewriteRule ^finance$ sistem.php?menu=finance [L]
     RewriteRule ^finance/cari=(.*)$ sistem.php?menu=finance&cari=$1 [L]
     RewriteRule ^finance/i$ sistem.php?menu=ifinance [L]

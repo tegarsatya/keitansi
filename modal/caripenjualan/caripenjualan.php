@@ -17,36 +17,7 @@
         </button>
     </div>
     <div class="modal-body">
-        <div class="row">
-            <div class="form-group col-md-6">
-                <label>Outlet <span class="tx-danger">*</span></label>
-                <select type="text" name="outlet" id="outlet" class="form-control" required="required">
-            		<option value="">-- Pilih Outlet --</option>
-				<?php
-					$master	= $conn->prepare("SELECT id_out, kode_out, nama_out FROM outlet ORDER BY nama_out ASC");
-					$master->execute();
-					while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
-						$pilih	= (@$pecah[0]==$hasil['id_out']) ? 'selected="selected"' : '';
-				?>
-                	<option value="<?php echo($hasil['id_out']); ?>" <?php echo($pilih); ?>><?php echo($hasil['nama_out']); ?></option>
-                <?php } ?>
-                </select>
-            </div>
-            <div class="form-group col-md-6">
-                <label>Obat <span class="tx-danger">*</span></label>
-                <select type="text" name="obat" id="obat" class="form-control" required="required">
-            		<option value="">-- Pilih Obat --</option>
-				<?php
-					$master	= $conn->prepare("SELECT id_pro, kode_pro, nama_pro FROM produk ORDER BY nama_pro ASC");
-					$master->execute();
-					while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
-						$pilih	= (@$pecah[1]==$hasil['id_pro']) ? 'selected="selected"' : '';
-				?>
-                	<option value="<?php echo($hasil['id_pro']); ?>" <?php echo($pilih); ?>><?php echo($hasil['nama_pro']); ?></option>
-                <?php } ?>
-                </select>
-            </div>
-        </div>
+
         <div class="row">
             <div class="form-group col-md-6">
                 <label>Periode I <span class="tx-danger">*</span></label>
@@ -71,11 +42,9 @@
 	$(".fortgl").mask("9999-99-99");
 
 	$("#btncari").click(function(){
-		var outlet	= $("#outlet").val();
-		var obat	= $("#obat").val();
 		var tgl1	= $("#tgl1").val();
 		var tgl2	= $("#tgl2").val();
-		var gabung	= "cari="+outlet+"_"+obat+"_"+tgl1+"_"+tgl2;
+		var gabung	= "cari="+tgl1+"_"+tgl2;
 		window.location.href = "<?php echo($data->sistem('url_sis')."/$menu/"); ?>"+gabung;
 	});
     </script>

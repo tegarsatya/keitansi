@@ -47,7 +47,9 @@
 		$qMaster = "SELECT
 						tfkk.*,
 						o.nama_adm,
-                        tfkk.tanggal
+						tfkk.id_rute,
+                        tfkk.tanggal,
+						tfkk.nama_pengirim
 						-- tfkk.tanggal_faktur
 					FROM
                         rute tfkk
@@ -69,8 +71,10 @@
 			$edit	= ($data->akses($admin, $menu, 'A.update_status')==='Active') ? '<a href="'.$data->sistem('url_sis').'/rute/e/'.$hasil['id_rute'].'"><span class="badge badge-info"><i class="fa fa-edit"></i></span></a>' : '';
             // $view	= ($data->akses($admin, $menu, 'A.read_status')==='Active') ? '<a target="_blank" href="'.$sistem.'/laporan/xps/finance/kwitansi.php?key='.$hasil['id_finance'].'" title="Cetak SJ"><span class="badge badge-warning"><i class="fa fa-truck"></i></span></a> <a target="_blank" href="'.$sistem.'/laporan/xps/finance/finance.php?key='.$hasil['id_finance'].'" title="Cetak Tanda Terima"><span class="badge badge-success"><i class="fa fa-print"></i></span></a>' : '';
 			$delete	= ($data->akses($admin, $menu, 'A.delete_status')==='Active') ? ' <a href="#modal1" onclick="crud(\'rute\', \'delete\', \''.$hasil['id_rute'].'\')" data-toggle="modal"><span class="badge badge-danger"><i class="fa fa-trash"></i></span></a>' : '';
+			$view	= ($data->akses($admin, $menu, 'A.read_status')==='Active') ? '<a href="'.$sistem.'/rute/v/'.$hasil['id_rute'].'"><span class="badge badge-warning"><i class="fa fa-search"></a></i>' : '';
+			$views	= ($data->akses($admin, $menu, 'A.read_status')==='Active') ? '<a href="'.$sistem.'/rute/p/'.$hasil['id_rute'].'"><span class="badge badge-warning"><i class="fa fa-search"></a></i>' : '';
 
-			$tabel	.= '<tr><td><center>'.$no.'</center></td><td>'.$hasil['nama_adm'].'</td><td>'.$hasil['tanggal'].'</td><td>'.$delete.$edit.'</td></tr>';
+			$tabel	.= '<tr><td><center>'.$no.'</center></td><td><center><a href="'.$data->sistem('url_sis').'/rute/v/'.$hasil['id_rute'].'">'.$hasil['nama_pengirim'].'</center></td><td><center>'.$hasil['tanggal'].'</center></td><td><center>'.$view.$views.'</center></td><td>'.$delete.$edit.'</td></tr>';
 		}
 		$navi	= $paging->myPaging($menu, $jumlah['total'], $maxi, $page);
 	}

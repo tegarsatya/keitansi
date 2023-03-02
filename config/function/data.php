@@ -79,16 +79,16 @@
 			return $hasil;
 		}
 
-		function outlet($kode, $cari) {
-			$conn	= $this->open();
-			$read	= $conn->prepare("SELECT $cari AS cari FROM outlet WHERE id_out=:kode");
-			$read->bindParam(':kode', $kode, PDO::PARAM_STR);
-			$read->execute();
-			$conn	= $this->close();
-			$view	= $read->fetch(PDO::FETCH_ASSOC);
-			$hasil	= empty($kode) ? '' : $view['cari'];
-			return $hasil;
-		}
+		// function outlet($kode, $cari) {
+		// 	$conn	= $this->open();
+		// 	$read	= $conn->prepare("SELECT $cari AS cari FROM outlet WHERE id_out=:kode");
+		// 	$read->bindParam(':kode', $kode, PDO::PARAM_STR);
+		// 	$read->execute();
+		// 	$conn	= $this->close();
+		// 	$view	= $read->fetch(PDO::FETCH_ASSOC);
+		// 	$hasil	= empty($kode) ? '' : $view['cari'];
+		// 	return $hasil;
+		// }
 
 		function supplier($kode, $cari) {
 			$conn	= $this->open();
@@ -101,16 +101,16 @@
 			return $hasil;
 		}
 		
-		function produk($kode, $cari) {
-			$conn	= $this->open();
-			$read	= $conn->prepare("SELECT $cari AS cari FROM produk WHERE id_pro=:kode");
-			$read->bindParam(':kode', $kode, PDO::PARAM_STR);
-			$read->execute();
-			$conn	= $this->close();
-			$view	= $read->fetch(PDO::FETCH_ASSOC);
-			$hasil	= empty($kode) ? '' : $view['cari'];
-			return $hasil;
-		}
+		// function produk($kode, $cari) {
+		// 	$conn	= $this->open();
+		// 	$read	= $conn->prepare("SELECT $cari AS cari FROM produk WHERE id_pro=:kode");
+		// 	$read->bindParam(':kode', $kode, PDO::PARAM_STR);
+		// 	$read->execute();
+		// 	$conn	= $this->close();
+		// 	$view	= $read->fetch(PDO::FETCH_ASSOC);
+		// 	$hasil	= empty($kode) ? '' : $view['cari'];
+		// 	return $hasil;
+		// }
 
 		function stokawal($kode, $tgl) {
 			$conn	= $this->open();

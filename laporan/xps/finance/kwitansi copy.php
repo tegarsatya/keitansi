@@ -72,7 +72,7 @@
 
 		<div style="text-align:center; font-weight:bold; margin-bottom:20px;"></div>
 
-        <table  style="margin-right:130px; margin-right:auto">
+        <table  style="margin-right:100px; margin-right:auto">
         	<!-- <tr>
             	<td>Kepada Yth,</td>
             	<td></td>
@@ -80,17 +80,9 @@
             </tr> -->
         	<tr>
                 
-            	<td><u>Nomor</u></td>
+            	<td>Nomor</td>
             	<td><center></center></td>
-            	<!-- <td width="55%">: <?php echo($view['nomor']); ?></td> -->
-				
-				<td width="55%">: <?php echo($view['nomor']); ?></td>
-            </tr>
-
-			<tr>
-            	<td>Number</td>
-            	<td><center></center></td>
-            	<td width="55%"></td>
+            	<td width="57%">: <?php echo($view['nomor']); ?></td>
             </tr>
           
             <tr>
@@ -113,7 +105,7 @@
             </tr>
 
             <tr>
-				<td> </td>
+            <td> </td>
                 <!-- <td>Received Form </td> -->
             	<td><center></center></td>
             	<td></td>
@@ -121,18 +113,13 @@
             <tr>
             	<td><u>Sejumlah Uang<u> </td>
             	<td><center></center></td>
-            	<td>:</td>
-            </tr>
-			<!-- <tr>
-            	<td><u>Sejumlah Uang<u> </td>
-            	<td><center></center></td>
             	<td></td>
-            </tr> -->
+            </tr>
 
             <tr>
             	<td>Amount Received </td>
             	<td><center></center></td>
-            	<td>:</td>
+            	<td></td>
             </tr>
 
             <tr>
@@ -141,94 +128,28 @@
             	<td><center></center></td>
             	<td></td>
             </tr>
-			<tr>
-                 <td> </td>
-                <!-- <td>Received Form </td> -->
-            	<td><center></center></td>
-            	<td></td>
-            </tr>
-			<tr>
-                 <td> </td>
-                <!-- <td>Received Form </td> -->
-            	<td><center></center></td>
-            	<td></td>
-            </tr>
-			<tr>
-                 <td> </td>
-                <!-- <td>Received Form </td> -->
-            	<td><center></center></td>
-            	<td></td>
-            </tr>
-			<tr>
-                 <td> </td>
-                <!-- <td>Received Form </td> -->
-            	<td><center></center></td>
-            	<td></td>
-            </tr>
-
-			<tr>
-            	<td><u>Untuk Pembayaran<u> </td>
-            	<td><center></center></td>
-            	<td>:</td>
-            </tr>
-			<!-- <tr>
-            	<td><u>Sejumlah Uang<u> </td>
-            	<td><center></center></td>
-            	<td></td>
-            </tr> -->
 
             <tr>
-            	<td>Payment For </td>
-            	<td><center></center></td>
-            	<td>:</td>
-            </tr>
-
-
-			<tr>
-            	<td> </td>
-            	<!-- <td><center></center></td> -->
-            	<td> </td>
-            </tr>
-			<tr>
-            	<td> </td>
-            	<!-- <td><center></center></td> -->
-            	<td> </td>
-            </tr>
-			<tr>
-            	<td> </td>
-            	<!-- <td><center></center></td> -->
-            	<td> </td>
-            </tr>
-			<tr>
-            	<td> </td>
-            	<!-- <td><center></center></td> -->
-            	<td> </td>
-            </tr>
-			<tr>
-            	<td> </td>
-            	<!-- <td><center></center></td> -->
-            	<td> </td>
-            </tr>
-			<tr>
-            	<td> </td>
-            	<!-- <td><center></center></td> -->
-            	<td> </td>
-            </tr>
-			<tr>
-            	<td> </td>
-            	<!-- <td><center></center></td> -->
-            	<td> </td>
-            </tr>
-			<tr>
-            	<td> </td>
+            	<td>Untuk Pembayaran </td>
             	<!-- <td><center></center></td> -->
             	<td> </td>
             </tr>
 
-			<!-- <tr>
+			<tr>
+            	<td> </td>
+            	<!-- <td><center></center></td> -->
+            	<td> </td>
+            </tr>
+			<tr>
+            	<td> </td>
+            	<!-- <td><center></center></td> -->
+            	<td> </td>
+            </tr>
+			<tr>
             	<td><b> Faktur Nomor : </td>
+            	<!-- <td><center></center></td> -->
             	<td> </td>
-            </tr> -->
+            </tr>
 
 
         </table>
@@ -268,7 +189,7 @@
 					
 					// $stotal	+= $subtot;
 			?>
-             <!-- <tr>
+             <tr>
                 
             	<td><center><?php echo($hasil['kode_tfk']); ?><center</td>
 				<TD></TD>
@@ -281,7 +202,7 @@
 			
             	<td align="right"><center style="float:right;"> <?php echo($data->angka($hasil['total_tfk'])); ?></center></td>
             </tr>
-           -->
+          
 				<?php
 				$nomor++;
             	}
@@ -289,7 +210,10 @@
             </tbody>
         </table>
 
-		<!-- <table style="margin-left:0px ;margin-right:auto" >
+		<br>
+		<br>
+	
+		<table style="margin-left:0px ;margin-right:auto" >
 			<tr>
             	<td><center><b>Total Faktur<center</td>
             	<td><center></center></td>
@@ -343,190 +267,180 @@
 			
             	<td align="right"><center style="float:right;"><?php echo($data->angka($subtot)); ?></span></td>
             </tr>
-		</table> -->
+		</table>
 		<br>
 		<div style="width:45%; display:inline-block; float:left;">
-			<tr>
-                 <td><u>Dengan Rincian</u>  </td>
-                <!-- <td>Received Form </td> -->
-            	<td><center></center></td>
-            	<td></td>
-            </tr>
-			<tr>
-                 <td>Payment For </td>
-                <!-- <td>Received Form </td> -->
-            	<td><center></center></td>
-            	<td></td>
-            </tr>
-				<!-- <div align="right">
+				<div align="right">
                 <table width="80%" style="font-size:12px;">
                    
                 </table>
                 </div>
-            	<div style="min-height:30px; height:auto; border:solid 1px #666666; text-align:center; font-weight:bold; margin-top:10px; padding:5px; font-size:12px;">Terbilang : # <?php echo($data->terbilang($subtot)); ?> Rupiah #</div> -->
+            	<div style="min-height:30px; height:auto; border:solid 1px #666666; text-align:center; font-weight:bold; margin-top:10px; padding:5px; font-size:12px;">Terbilang : # <?php echo($data->terbilang($subtot)); ?> Rupiah #</div>
             	<!--<div style="min-height:30px; height:auto; border:solid 1px #666666; text-align:center; font-weight:bold; margin-top:10px; line-height:25px; font-size:12px;">Terbilang : # <?php //echo($data->terbilang($gtotal)); ?> Rupiah #</div>-->
             	
-        </div>
+         </div>
 		<div>
-			<table class="tabel" style="margin-left:225px; margin-right:280px;">
-				<thead>
-					<tr>
-
-						<th >No. Faktur</th>
-						<th >Total Nominal</th>
-						
-					</tr>
-					
-				</thead>
-            <tbody>
-           
-            	<tr>
-                	<!-- <td><?php echo($hasil['kode_pro']); ?></td>
-                	<td><?php echo($hasil['nama_pro']); ?></td>
-                	<td><?php echo($hasil['nama_kpr']); ?></td>
-                	<td><?php echo("$hasil[berat_pro] $hasil[nama_spr]"); ?></td>
-                	<td><center><?php echo($hasil['no_bcode']); ?></center></td>
-                	<td><center><?php echo(substr($hasil['tgl_expired'], 0, 7)); ?></center></td>
-                	<td><div align="right"><?php echo($data->angka($hasil['jumlah_tfd'])); ?></div></td>
-                	<td><div align="right"><?php echo($data->angka($hasil['harga_tfd'])); ?></div></td>
-                	<td><center><?php echo($hasil['diskon_tfd']); ?>%</center></td>
-                	<td><div align="right"><?php echo($data->angka($total)); ?></div></td> -->
-                </tr>
-			
-            </tbody>
-				<!-- <tr>
+			<table style="margin-left:400px ;margin-right:auto">
+				<tr>
 					<td><center>Jakarta, <?php echo($date->tgl_indo($view['tanggal_faktur'])); ?><center</td>
 					<td><center></center></td>
 				</tr>
+				
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr><tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr><tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr><tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr><tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr><tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr><tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td> </td>
+					<!-- <td>Received Form </td> -->
 					<td><center></center></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td><u><b>Saputra Pratama </td>
+					<!-- <td><center>Finance</center></td> -->
 				</tr>
 				<tr>
 					<td><b>Finance </td>
-				</tr> -->
+					<!-- <td><center>Finance</center></td> -->
+				</tr>
 			</table>
 		<!-- <div style="min-height:30px; height:50; border:solid 1px #666666; text-align:center; font-weight:bold; margin-top:10px; padding:5px; font-size:12px;">Terbilang : # <?php echo($data->terbilang($subtot)); ?> Rupiah #</div> -->
 		</div>
-		<!-- <div style="height:auto; border:solid 1px #666666; text-align:left; margin-top:10px; padding:5px; font-size:14px;">
+		<div style="height:auto; border:solid 1px #666666; text-align:left; margin-top:10px; padding:5px; font-size:14px;">
 					<div style="margin-left:5px; margin-top:10px;">Pembayaran dapat dilakukan dengan cara melakukan transfer ke :</div>
                 	<div style="margin-left:25px; margin-top:5px;">BANK <?php echo($data->sistem('bank_sis')); ?></div>
                 	<div style="margin-left:25px; margin-top:5px;"><?php echo($data->sistem('norek_sis')); ?></div>
                 	<div style="margin-left:25px; margin-top:5px;">An. <?php echo($data->sistem('anam_sis')); ?></div>
-         </div> -->
+         </div>
 		<br />
         
         

@@ -40,6 +40,10 @@
                     <input type="text" name="nomor" class="form-control" value="<?php echo($kode); ?>" placeholder="-" required="required" />
             </div>
             <div class="form-group col-sm-12">
+                <label>keterangan <span class="tx-danger">*</span></label>
+                <input type="text" name="keterangan" class="form-control" placeholder="Type here..." required="required" />
+            </div>
+            <div class="form-group col-sm-12">
                 <label>Nama Outlet <span class="tx-danger">*</span></label>
                 <select name="nama_outlet" id="nama_outlet" class="form-control select2" onchange="" required="required">
                 <option value="">-- Pilih --</option>

@@ -54,21 +54,13 @@
 							A.sisa_psd > 0 AND 
 							C.status_phg =:status
 						GROUP BY
-							A.id_psd,
-							A.no_bcode,
-							A.tgl_expired,
-							A.sisa_psd,
-							B.id_pro,
-							B.kode_pro,
-							B.nama_pro,
-							B.berat_pro,
-							C.harga_phg,
-							D.nama_kpr,
-							D.satuan_kpr,
-							E.nama_spr,
-							A.id_trd,
-							A.tgl_psd,
-							A.gudang";
+							A.id_faktur,
+							A.kode_tfk,
+							B.id_data,
+							B.get_id_faktur,
+							B.no_id_faktur,
+							
+						";
 			$master	= $conn->prepare($qMaster);
 			$master->bindParam(':status', $status, PDO::PARAM_STR);
 			$master->execute();

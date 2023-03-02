@@ -4,53 +4,50 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                 <li class="breadcrumb-item"><a href="#">List Menu</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Cash & Bank</li>
+                <li class="breadcrumb-item active" aria-current="page">Rute Pengiriman Barang dan Tuker Faktur</li>
             </ol>
         </nav>
-        <h4 class="content-title">Edit Data - Outlet</h4>
+        <h4 class="content-title">Edit Data - Rute Pengiriman Barang</h4>
     </div>
 </div>
 <?php
 	$kode	= $secu->injection($_GET['keycode']);
-	$read	= $conn->prepare("SELECT A.id_rute, A.tanggal, A.nama_pengirim, B.id_rute, B.nama_outlet, B.ket, C.id_rute, C.barang FROM rute AS A INNER JOIN rute_outlet AS B ON A.id_rute=B.id_rute INNER JOIN rute_pengiriman_barang AS C ON A.id_rute=C.id_rute LEFT JOIN rute_tuker_faktur AS D ON A.id_rute=D.id_rute WHERE A.id_rute=:kode GROUP BY A.id_rute");
+	$read	= $conn->prepare("SELECT A.id_rute, A.tanggal, A.nama_pengirim, B.id_rute, B.nama_outlet, B.ket, C.id_rute, C.barang,E.id_adm, E.nama_adm, F.id_out, F.nama_out, COUNT(B.id_r_o) AS outlet, COUNT(C.id_p_b) AS barang, COUNT(D.id_t_f) AS faktur FROM rute AS A INNER JOIN rute_outlet AS B ON A.id_rute=B.id_rute INNER JOIN rute_pengiriman_barang AS C ON A.id_rute=C.id_rute LEFT JOIN rute_tuker_faktur AS D ON A.id_rute=D.id_rute LEFT JOIN adminz AS E ON A.id_rute=E.id_adm LEFT JOIN outlet AS F ON A.id_rute=F.id_out WHERE A.id_rute=:kode GROUP BY A.id_rute");
 	$read->bindParam(':kode', $kode, PDO::PARAM_STR);
 	$read->execute();
 	$view	= $read->fetch(PDO::FETCH_ASSOC);
 ?>
 <div class="content-body">
     <div class="component-section no-code">
-        <h5 id="section1" class="tx-semibold">Informasi Outlet</h5>
-        <p class="mg-b-25">Informasi data-data dasar outlet.</p>
-        <input type="hidden" name="jumlegal" id="jumlegal" value="<?php echo($view['legal']); ?>" readonly="readonly" />
+        <h5 id="section1" class="tx-semibold">Informasi Pengiriman Barang</h5>
+        <!-- <p class="mg-b-25">Informasi data-data dasar outlet.</p> -->
+        <input type="hidden" name="jumlout" id="jumlout" value="<?php echo($view['outlet']); ?>" readonly="readonly" />
+        <input type="hidden" name="jumlpe" id="jumlpe" value="<?php echo($view['barang']); ?>" readonly="readonly" />
+        <input type="hidden" name="jumlfk" id="jumlfk" value="<?php echo($view['faktur']); ?>"" readonly="readonly" /> 
+        <!-- <input type="hidden" name="jumlegal" id="jumlegal" value="<?php echo($view['legal']); ?>" readonly="readonly" /> -->
         <input type="hidden" name="jumitem" id="jumitem" value="0" readonly="readonly" />
         <form id="formtransaksi" action="#" method="post" enctype="multipart/form-data" autocomplete="off">
-        <input type="hidden" name="nmenu" id="nmenu" value="outlet" readonly="readonly" />
+        <input type="hidden" name="nmenu" id="nmenu" value="rute" readonly="readonly" />
         <input type="hidden" name="nact" id="nact" value="update" readonly="readonly" />
         <input type="hidden" name="keycode" id="keycode" value="<?php echo($kode); ?>" readonly="readonly" />
         <div class="row">
-            <div class="form-group col-sm-3">
-                <label>Nama Outlet <span class="tx-danger">*</span></label>
-                <input type="text" name="namaoutlet" class="form-control" value="<?php echo($view['nama_out']); ?>" placeholder="Type here..." required="required" />
+            <div class="form-group col-sm-12">
+                <label>Tgl. Pengiriman  <span class="tx-danger">*</span></label>
+                <input type="text" name="tanggal" class="form-control datepicker" value="<?php echo($view['tanggal']); ?>" placeholder="9999-99-99" required="required" />
             </div>
-            <div class="form-group col-sm-3">
-                <label>Nama Resmi <span class="tx-danger">*</span></label>
-                <input type="text" name="namaresmi" class="form-control" value="<?php echo($view['resmi_out']); ?>" placeholder="Type here..." required="required" />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Kategori <span class="tx-danger">*</span></label>
-                <input type="text" name="kategori" class="form-control" value="<?php echo($data->koutlet($view['id_kot'], 'nama_kot')); ?>" readonly="readonly" />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>NPWP <span class="tx-danger">*</span></label>
-                <input type="text" name="npwp" class="form-control" value="<?php echo($view['npwp_out']); ?>" placeholder="Type here..." required="required" />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Officer Code <span class="tx-danger">*</span></label>
-                <input type="text" name="ofcode" class="form-control" value="<?php echo($view['ofcode_out']); ?>" placeholder="Type here..." required="required" />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Ket. Lainnya <span class="tx-black">*</span></label>
-                <input type="text" name="kete" class="form-control" value="<?php echo($view['ket_out']); ?>" placeholder="Type here..." />
+            <div class="form-group col-sm-12">
+                <label>Nama Kurir <span class="tx-danger">*</span></label>
+                <select name="nama_pengirim" id="nama_pengirim" class="form-control select2" onchange="" required="required">
+                    <option value="">-- Pilih --</option>
+                        <?php
+                        $master = $conn->prepare("SELECT id_adm, nama_adm,email_adm FROM adminz ORDER BY nama_adm ASC");
+                        $master->execute();
+                        while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
+                            $pilih	= ($hasil['id_adm']==$view['nama_pengirim']) ? 'selected="selected"' : '';
+                        ?>
+                    <option value="<?php echo($hasil['id_adm']); ?>"><?php echo($pilih); ?><?php echo("$hasil[nama_adm] ($hasil[email_adm])"); ?></option>
+                    <?php } ?>
+                </select>
             </div>
         </div><!-- row -->
 		<div class="row">
@@ -101,137 +98,61 @@
                 <a onclick="additem('tbllegal', 'jumlegal', 'legaloutlet')"><span class="badge badge-success"><i class="fa fa-plus-circle"></i> Add Data</span></a>
             </div>
 		</div>
-        <div class="clearfix mg-t-25 mg-b-25"></div>
-        <h5 id="section1" class="tx-semibold">Kontak Outlet</h5>
-        <p class="mg-b-25">Lengkapi kontak dan alamat lengkap outlet.</p>
         <div class="row">
-            <div class="form-group col-sm-3">
-                <label>Telp. <span class="tx-danger">*</span></label>
-                <input type="text" name="telp" class="form-control" value="<?php echo($view['telp_ola']); ?>" placeholder="Type here..." required="required" />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Hp. / WA <span class="tx-black">*</span></label>
-                <input type="text" name="hape" class="form-control" value="<?php echo($view['hp_ola']); ?>" placeholder="Type here..." />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Fax <span class="tx-black">*</span></label>
-				<input type="text" name="fax" class="form-control" value="<?php echo($view['fax_ola']); ?>" placeholder="Type here..." />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Email <span class="tx-danger">*</span></label>
-				<input type="email" name="email" class="form-control" value="<?php echo($view['email_ola']); ?>" placeholder="Type here..." required="required" />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Website <span class="tx-black">*</span></label>
-				<input type="text" name="website" class="form-control" value="<?php echo($view['web_ola']); ?>" placeholder="Type here..." />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Provinsi <span class="tx-danger">*</span></label>                
-				<select name="provinsi" id="provinsi" class="form-control select2" onchange="selectdata('provinsi', 'carikabupaten', 'kabupaten')" required="required">
-                	<option value="">-- Pilih --</option>
-				<?php
-					$master	= $conn->prepare("SELECT id_rpo, nama_rpo FROM regional_provinsi ORDER BY nama_rpo ASC");
-					$master->execute();
-					while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
-						$pilih	= ($view['id_rpo']==$hasil['id_rpo']) ? 'selected="selected"' : '';
-				?>
-                	<option value="<?php echo($hasil['id_rpo']); ?>" <?php echo($pilih); ?>><?php echo($hasil['nama_rpo']); ?></option>
-                <?php } ?>
-                </select>
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Kab. / Kota <span class="tx-danger">*</span></label>
-				<select name="kabupaten" id="kabupaten" class="form-control select2" required="required">
-                	<option value="">-- Pilih --</option>
-				<?php
-					$master	= $conn->prepare("SELECT id_rkb, nama_rkb FROM regional_kabupaten WHERE id_rpo=:prov ORDER BY nama_rkb ASC");
-					$master->bindParam(':prov', $view['id_rpo'], PDO::PARAM_STR);
-					$master->execute();
-					while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
-						$pilih	= ($view['id_rkb']==$hasil['id_rkb']) ? 'selected="selected"' : '';
-				?>
-                	<option value="<?php echo($hasil['id_rkb']); ?>" <?php echo($pilih); ?>><?php echo($hasil['nama_rkb']); ?></option>
-                <?php } ?>
-                </select>
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Kode Pos <span class="tx-black">*</span></label>
-				<input type="text" name="kopos" class="form-control" value="<?php echo($view['kopos_ola']); ?>" placeholder="Type here..." />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Jadwal Tukar Faktur <span class="tx-black">*</span></label>
-				<textarea name="jadwal" class="form-control" placeholder="Type here..."><?php echo($view['jatuk_ola']); ?></textarea>
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Alamat Kantor <span class="tx-danger">*</span></label>
-				<textarea name="alamatkantor" class="form-control" placeholder="Type here..." required="required"><?php echo($view['kantor_ola']); ?></textarea>
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Alamat Pengiriman <span class="tx-black">*</span></label>
-				<textarea name="alamatkirim" class="form-control" placeholder="Type here..."><?php echo($view['pengiriman_ola']); ?></textarea>
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Alamat Tukar Faktur <span class="tx-black">*</span></label>
-				<textarea name="alamattukar" class="form-control" placeholder="Type here..."><?php echo($view['atuk_ola']); ?></textarea>
-            </div>
-        </div><!-- row -->
-        <div class="clearfix mg-t-25 mg-b-25"></div>
-        <h5 id="section1" class="tx-semibold">PIC Outlet</h5>
-        <p class="mg-b-25">Informasi PIC Procurement & Finance outlet.</p>
-        <div class="row">
-            <div class="form-group col-sm-3">
-                <label>PIC Procurement <span class="tx-black">*</span></label>
-				<input type="text" name="picp" class="form-control" value="<?php echo($view['picp_ola']); ?>" placeholder="Type here..." />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Hp. / WA <span class="tx-black">*</span></label>
-				<input type="text" name="picpk" class="form-control" value="<?php echo($view['picpk_ola']); ?>" placeholder="Type here..." />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>PIC Finance <span class="tx-black">*</span></label>
-				<input type="text" name="picf" class="form-control" value="<?php echo($view['picf_ola']); ?>" placeholder="Type here..." />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>Hp. / WA <span class="tx-black">*</span></label>
-				<input type="text" name="picfk" class="form-control" value="<?php echo($view['picfk_ola']); ?>" placeholder="Type here..." />
-            </div>
-        </div><!-- row -->
-        <div class="clearfix mg-t-25 mg-b-25"></div>
-        <h5 id="section1" class="tx-semibold">Diskon & Kondisi</h5>
-        <p class="mg-b-25">Aturan diskon & kondisi transaksi outlet.</p>
-        <div class="row">
-            <div class="form-group col-sm-3">
-				<label>Diskon Produk <span class="tx-danger">*</span></label>
-                <input type="text" name="diskon" class="form-control" value="<?php echo($view['diskon_odi']); ?>" placeholder="0" required="required" />
-            </div>
-            <div class="form-group col-sm-3">
-                <label>TOP <span class="tx-danger">*</span></label>
-                <input type="text" name="limit" class="form-control" value="<?php echo($view['top_odi']); ?>" placeholder="0" required="required" />
-            </div>
-        </div><!-- row -->
-		<div class="row">
             <div class="form-group col-sm-12">
-                <label>Diskon Produk <span class="tx-danger">*</span></label>
+                <label>Nama Outlet <span class="tx-danger">*</span></label>
 				<table class="table table-hover mg-b-0">
 					<thead>
 						<tr>
-							<th>Produk</th>
-							<th>Detail</th>
-							<th>Satuan</th>
-							<th>Diskon</th>
-							<th><center>#</center></th>
+							<th>Nama Outlet</th>
+							<th>Ket.</th>
+							<!-- <th>Expired Date</th> -->
+							<th><center>Hapus</center></th>
 						</tr>
 					</thead>
-					<tbody id="tbldiskon"></tbody>
+					<tbody id="tbllegal2">
+                    <?php
+                            $no = 1;
+                            $master	= $conn->prepare("SELECT id_r_o, id_rute, nama_outlet, ket FROM rute_outlet WHERE id_rute=:kode"); 
+                            $master->bindParam(':kode', $kode, PDO::PARAM_STR);
+                
+                            $master->execute();
+                            while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
+                     ?>
+                    <tr id="<?php echo("outlet$nomor"); ?>">
+                        <td>
+                        <select name="outlet[]"  id="outlet[]" class="form-control select2" required="required">
+                            <option value="">-- Select Data Faktur --</option>
+                            <?php
+                                    $io	= $conn->prepare("SELECT id_out, nama_out FROM outlet ORDER BY nama_out ASC");                 
+                                    $io->execute();
+                                    while($po= $io->fetch(PDO::FETCH_ASSOC)){
+                                        $pilih	= ($po['id_out']===$hasil['nama_outlet']) ? 'selected="selected"' : '';
+
+                                    ?>
+                                    <option value="<?php echo($po['id_out']); ?>"><?php echo($pilih); ?><?php echo($po['nama_out'] ); ?></option>
+                            <?php } ?>
+                        </select>
+                        </td>
+                        <td><input type="text" name="ket[]" class="form-control" value="<?php echo($hasil['ket']); ?>" placeholder="Type here..." /></td>
+                        <!-- <td><input type="text" name="tgllegal[]" class="form-control fortgl" placeholder="9999-99-99" /></td> -->
+                        <td>
+                        <center>
+                            <a onclick="<?php echo("removeitem('jumlout', 'outlet', $nomor)"); ?>"><span class="badge badge-danger"><i class="fa fa-times-circle"></i></span></a>
+                        </center>
+                        </td>
+                    </tr>
+                    <?php $no++; } ?>
+                    </tbody>
 				</table>
-                <a onclick="disprotlet()"><span class="badge badge-success"><i class="fa fa-plus-circle"></i> Add Data</span></a>
+                <a onclick="additem('tbllegal2', 'jumlout', 'legaloutlet')"><span class="badge badge-success"><i class="fa fa-plus-circle"></i> Add Data</span></a>
             </div>
-		</div>
+        </div>
         <!-- row -->
         <div class="clearfix mg-t-25 mg-b-25"></div>
         <div class="row">
             <div class="col-sm-12">
-                <a href="<?php echo($data->sistem('url_sis').'/outlet'); ?>" title="Batal">
+                <a href="<?php echo($data->sistem('url_sis').'/rute'); ?>" title="Batal">
                 <button type="button" class="btn btn-secondary btn-xs">Batal</button>
 				</a>
                 <button type="submit" id="bsave" class="btn btn-dark btn-xs">Update</button>

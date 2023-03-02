@@ -26,11 +26,11 @@
                 <select name="id_tfk" id="id_tfk" class="form-control select2" onchange="cekFaktur()" required="required">
                 <option value="">-- Pilih --</option>
                 <?php
-                $master	= $conn->prepare("SELECT A.id_tfk, A.kode_tfk, B.nama_out, DATE_FORMAT(A.created_at, '%Y-%m-%d') FROM transaksi_faktur AS A LEFT JOIN outlet AS B ON A.id_out=B.id_out WHERE DATE(tgl_tfk) = CURDATE()  ORDER BY A.tgl_tfk ASC");                 
+                $master	= $conn->prepare("SELECT id_p_b, id_rute, barang, DATE_FORMAT(created_at, '%Y-%m-%d') FROM rute_pengiriman_barang ORDER BY id_rute ASC");                 
                  $master->execute();
                   while($hasil= $master->fetch(PDO::FETCH_ASSOC)){
                 ?>
-                 <option value="<?php echo($hasil['id_tfk']); ?>"><?php echo("$hasil[kode_tfk] ($hasil[nama_out])"); ?></option>
+                 <option value="<?php echo($hasil['barang']); ?>"><?php echo($hasil['barang']); ?></option>
                 <?php } ?>
                 </select>
             </div>

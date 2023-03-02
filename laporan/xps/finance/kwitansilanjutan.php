@@ -76,7 +76,8 @@
 						-- a.nomor_faktur,
 						d.kode_tfk,
 						tfkk.nomor,
-						tfkk.tanggal_faktur
+						tfkk.tanggal_faktur,
+						tfkk.keterangan
 					FROM
 						finance tfkk
 					LEFT JOIN outlet o ON
@@ -141,7 +142,7 @@
             	<td><u>Telah Terima Dari<u> </td>
                 <!-- <td>Received Form </td> -->
             	<td><center></center></td>
-            	<td style="padding-top: 15px;">: <?php echo($view['resmi_out']); ?></td>
+            	<td>: <?php echo($view['resmi_out']); ?></td>
             </tr>
             <td><i>Received Form</i> </td>
             	<td><center></center></td>
@@ -184,7 +185,7 @@
             <tr>
             	<td><u>Sejumlah Uang<u> </td>
             	<td><center></center></td>
-            	<td style="padding-top: 15px;">: Rp. <?php echo($data->angka($subtot)); ?></td>
+            	<td>: Rp. <?php echo($data->angka($subtot)); ?></td>
             </tr>
 			
             <tr>
@@ -229,7 +230,7 @@
             <tr>
                  <td><u>Terbilang </td>
             	<td><center></center></td>
-            	<td style="padding-top: 15px;"><b><i>: ## <?php echo($data->terbilang($subtot)); ?> Rupiah##</td>
+            	<td><b><i>: ## <?php echo($data->terbilang($subtot)); ?> ##</td>
             </tr>
 			<tr>
             	<td><i>Amount In Words</i> </td>
@@ -274,7 +275,7 @@
             <tr>
             	<td><u>Untuk Pembayaran</u> </td>
             	<td><center></center></td>
-            	<td style="padding-top: 15px;">: </td>
+            	<td>: </td>
             </tr>
 			<tr>
             	<td><i>In Payment For</i></td>
@@ -319,7 +320,7 @@
 			<tr>
             	<td><u> Keterangan  </td>
             	<td><center></center></td>
-            	<td style="padding-top: 15px;">: </td>
+            	<td>: <?php echo($view['keterangan']); ?></td>
             </tr>
 			<tr>
             	<td><i> Details  </td>
@@ -331,8 +332,7 @@
         </table>
 		
 		<p></p>
-		<center>
-    	<table class="tabel" style="border:solid 1px #666666; text-align:center; font-weight:bold; margin-top:2px; margin-right:86px;   padding:5px; font-size:12px;" >
+    	<table class="tabel" style="border:solid 1px #666666; text-align:center; font-weight:bold; margin-top:10px;  padding:5px; font-size:12px;" >
             <thead>
 			<td><center><b>Nomor Faktur<center></td>
 			<td><center><b>Nominal<center></td>
@@ -388,21 +388,20 @@
 			?>
             </tbody>
         </table>
-    	<table class="tabel"  style="min-height:30px; border:solid 1px #666666; text-align:center; font-weight:bold; padding:5px; margin-right:86px;  font-size:12px;"  >
+    	<table class="tabel"  style="min-height:30px; border:solid 1px #666666; text-align:center; font-weight:bold; padding:5px; font-size:12px;"  >
 			<thead>
 				<tr>
-					<td><center>TOTAL</center></td>
-					<td><center style="float:right;"><?php echo($data->angka($subtot)); ?></center></td>	
+					<td>TOTAL</td>
+						<td align="left"><center style="float:right;"><?php echo($data->angka($subtot)); ?></span></td>	
 				</tr>
 			</thead>
-			
 		</table>
 
 
 		<br>
 		
 		<div>
-			<table style="margin-left:487px ;margin-right:auto">
+			<table style="margin-left:450px ;margin-right:auto">
 				<tr>
 					<td><center>Jakarta, <?php echo($date->tgl_indo($view['tanggal_faktur'])); ?><center</td>
 					<td><center></center></td>
@@ -555,7 +554,6 @@
 					<!-- <td><center>Finance</center></td> -->
 				</tr>
 			</table>
-			</center>
 		<!-- <div style="min-height:30px; height:50; border:solid 1px #666666; text-align:center; font-weight:bold; margin-top:10px; padding:5px; font-size:12px;">Terbilang : # <?php echo($data->terbilang($subtot)); ?> Rupiah #</div> -->
 		</div>
 		<!-- <div style="height:auto; border:solid 1px #666666; text-align:left; margin-top:10px; padding:5px; font-size:14px;">
